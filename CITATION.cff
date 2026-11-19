@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use Approdo in a study, cite it as below."
+type: software
+title: "Approdo: a booking site for lab studies"
+abstract: "A booking site for lab studies with sessions of any length, fixed start times, a public booking page and a private researcher dashboard. It runs on Cloudflare Workers with a D1 database."
+authors:
+  - name: "nerln"
+    website: "https://nerln.github.io/"
+version: "0.4.0"
+date-released: "2026-11-19"
+url: "https://nerln.github.io/approdo/"
+repository-code: "https://github.com/nerln/approdo"
+license-url: "https://github.com/nerln/approdo/blob/main/LICENSE"
+keywords:
+  - booking
+  - user studies
+  - research
+  - Cloudflare Workers

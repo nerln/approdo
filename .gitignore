@@ -1,0 +1,16 @@
+# Secrets and local state: never commit these.
+node_modules/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+!.env.example
+.wrangler/
+*.pem
+*.key
+# Local files of the poster/QR helper
+poster/qr.png
+poster/poster.html
+poster/.venv/
+.DS_Store

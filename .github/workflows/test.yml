@@ -1,0 +1,27 @@
+# Runs the tests on every push and pull request: the regression suite, the config-agnostic suite, the variants, the generic
+# suite against YOUR site.config.js (a wrong value in it fails here instead of on the live site), and the tests of the usage collector.
+name: Test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run test:generic
+      - run: npm run test:variants
+      - run: node scripts/test.mjs site.config.js --suite test-generic
+      # the usage collector (stats-collector/) is a separate tiny Worker with its own tests
+      - run: node --test "stats-collector/test/*.test.mjs"

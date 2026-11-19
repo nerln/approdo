@@ -1,0 +1,49 @@
+{
+  "name": "approdo",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "description": "A booking site for lab user studies, configured from one file (site.config.js) and deployed to Cloudflare Workers with a D1 database.",
+  "scripts": {
+    "test": "node scripts/test.mjs",
+    "test:generic": "node scripts/test.mjs config/example-lab.config.js --suite test-generic",
+    "test:variants": "node scripts/test-variants.mjs",
+    "test:all": "npm test && npm run test:generic && npm run test:variants",
+    "preview": "node scripts/preview.mjs",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "build:schema": "node scripts/build-schema.mjs",
+    "qr": "node scripts/make-qr.mjs"
+  },
+  "devDependencies": {
+    "qrcode": "^1.5.4",
+    "wrangler": "^4.45.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerln/approdo.git"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "cloudflare": {
+    "bindings": {
+      "ADMIN_PASSWORD": {
+        "description": "Required. The password of the admin panel at /admin: at least 16 characters (a long sentence is fine). Until you set a real one the admin panel stays closed."
+      },
+      "MAIL_RELAY_URL": {
+        "description": "Optional, leave as it is for now. The address (ending in /exec) of your Google Apps Script mail relay; see docs/posta.md. Without it bookings are confirmed at once and no e-mail is sent."
+      },
+      "MAIL_RELAY_KEY": {
+        "description": "Optional, leave as it is for now. The shared key of the mail relay: generate it with `openssl rand -hex 32` (or `node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\"`) and paste the same value in Apps Script as RELAY_KEY."
+      },
+      "ADMIN_EMAIL": {
+        "description": "Optional. The address that receives the \"someone booked\" notices, if different from contactEmail in site.config.js. Only used when the mail relay is on."
+      },
+      "TURNSTILE_SITEKEY": {
+        "description": "Optional. The site key of a Cloudflare Turnstile widget (bot check); leave as it is to run without it. See README.md."
+      },
+      "TURNSTILE_SECRET": {
+        "description": "Optional. The secret key of the same Turnstile widget; leave as it is to run without it."
+      }
+    }
+  }
+}

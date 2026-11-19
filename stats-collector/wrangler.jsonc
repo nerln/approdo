@@ -1,0 +1,17 @@
+// The anonymous usage collector for Approdo. It is not part of the booking site: a lab never deploys it.
+// The D1 database below is created by Cloudflare at the first deploy (that is why there is no database_id),
+// and the Worker creates its table by itself on the first request, so there is no migration step.
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "approdo-stats",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "approdo-stats"
+    }
+  ],
+  "observability": { "enabled": false }
+}

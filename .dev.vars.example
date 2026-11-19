@@ -1,0 +1,10 @@
+# Secrets of the site. Copy this file to .dev.vars (not versioned, never commit it) to try the site locally with `npm run dev`.
+# On the real site these values are set in Cloudflare (the Deploy button asks for them; otherwise `npx wrangler secret put NAME`).
+# A value left at its placeholder below counts as "not set": the site ignores it, and the admin panel stays closed until
+# ADMIN_PASSWORD is replaced by a password of your own.
+ADMIN_PASSWORD=change-me-use-16-or-more-characters
+MAIL_RELAY_URL=https://script.google.com/macros/s/PASTE-YOUR-ID/exec
+MAIL_RELAY_KEY=change-me-random-key
+ADMIN_EMAIL=studio@example.org
+TURNSTILE_SITEKEY=change-me
+TURNSTILE_SECRET=change-me
